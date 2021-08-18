@@ -1,6 +1,8 @@
-function polling() {
-  // console.log("polling");
-  setTimeout(polling, 1000 * 30);
-}
+import { HelloService } from './services/hello.service';
 
-polling();
+export const helloService = new HelloService();
+
+chrome.runtime.onInstalled.addListener(details => {
+  console.log('Extension installed!');
+  helloService.start();
+});
